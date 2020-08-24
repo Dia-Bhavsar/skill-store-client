@@ -1,0 +1,31 @@
+.skillCategory{
+    display: flex;
+    background-color: white;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.skillCategory__image{
+    object-fit: contain;
+    width: 180px;
+    height: 180px;
+}
+
+.skillCategory__info{
+    padding-left: 20px;
+}
+
+.skillCategory__info > button{
+    background-color: #f0c14b;
+    border: 1px solid;
+    margin-top:10px;
+}
+
+.skillCategory__rating {
+    display: flex;
+}
+
+.skillCategory__title {
+    font-size: 17px;
+    font-weight: 800;
+}
