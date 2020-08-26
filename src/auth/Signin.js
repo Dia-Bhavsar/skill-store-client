@@ -6,6 +6,7 @@ import { authenticate, isAuth } from './helpers';
 import { ToastContainer, toast } from 'react-toastify';
 import Google from './Google';
 import 'react-toastify/dist/ReactToastify.min.css';
+import './Signin.css';
 
 const Signin = ({ history }) => {
     const [values, setValues] = useState({
@@ -13,6 +14,10 @@ const Signin = ({ history }) => {
         password: '',
         buttonText: 'Submit'
     });
+
+    const SignUp = () =>{
+        history.push('/signup')
+    }
 
     const { email, password, buttonText } = values;
 
@@ -51,23 +56,24 @@ const Signin = ({ history }) => {
     };
 
     const signinForm = () => (
-        <form>
-            <div className="form-group">
-                <label className="text-muted">Email</label>
+        <div className = "signin">
+            <div className="signin__container">
+            <h1>Sign In</h1>
+            <form>
+                <h5>E-mail</h5>
                 <input onChange={handleChange('email')} value={email} type="email" className="form-control" />
-            </div>
-
-            <div className="form-group">
-                <label className="text-muted">Password</label>
+                <h5>Password</h5>
                 <input onChange={handleChange('password')} value={password} type="password" className="form-control" />
-            </div>
-
-            <div>
-                <button className="btn btn-primary" onClick={clickSubmit}>
-                    {buttonText}
-                </button>
-            </div>
-        </form>
+                <button onClick={clickSubmit} className="signin__signInButton">Sign In</button>
+            </form>
+            <p>
+                By signing-in you agree to Amazon's Conditions of Use &amp; Sale. Please see our Privacy Notice, our Cookies Notice and our Interest-Based Ads Notice.
+            </p>
+            <button onClick = {SignUp}  className="signin__registerButton">Create your Skill Store Account</button>
+            <Google informParent={informParent} />
+        </div>
+        </div>
+        
     );
 
     return (
@@ -75,8 +81,6 @@ const Signin = ({ history }) => {
             <div className="col-md-6 offset-md-3">
                 <ToastContainer />
                 {isAuth() ? <Redirect to="/" /> : null}
-                <h1 className="p-5 text-center">Signin</h1>
-                <Google informParent={informParent} />
                 {signinForm()}
             </div>
         </Layout>

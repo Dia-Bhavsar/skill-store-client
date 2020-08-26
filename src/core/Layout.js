@@ -48,7 +48,7 @@ const Layout = ({ children, match, history }) => {
                         style={{ cursor: 'pointer', color: '#fff' }}
                         onClick={() => {
                             signout(() => {
-                                history.push('/');
+                                history.push('/signin');
                             });
                         }}
                     >

@@ -5,13 +5,14 @@ import axios from 'axios';
 import { isAuth } from './helpers';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import './Signup.css';
 
-const Signup = () => {
+const Signup = ({history}) => {
     const [values, setValues] = useState({
-        name: 'Dia',
-        email: 'diabhavsar16@gmail.com',
-        number: '1234567890',
-        password: '123456',
+        name: '',
+        email: '',
+        number: '',
+        password: '',
         buttonText: 'Submit'
     });
 
@@ -21,6 +22,10 @@ const Signup = () => {
         // console.log(event.target.value);
         setValues({ ...values, [name]: event.target.value });
     };
+
+    const signIn = () =>{
+        history.push('/signin');
+    }
 
     const clickSubmit = event => {
         event.preventDefault();
@@ -43,33 +48,32 @@ const Signup = () => {
     };
 
     const signupForm = () => (
+        <div className = "signup">
+        <div className="signup__container">
+        <h1>Sign Up</h1>
         <form>
-            <div className="form-group">
-                <label className="text-muted">Name</label>
-                <input onChange={handleChange('name')} value={name} type="text" className="form-control" />
-            </div>
+            <h5>Name</h5>
+            <input onChange={handleChange('name')} value={name} type="text" className="form-control" />
 
-            <div className="form-group">
-                <label className="text-muted">Email</label>
-                <input onChange={handleChange('email')} value={email} type="email" className="form-control" />
-            </div>
+            <h5>Email</h5>
+            <input onChange={handleChange('email')} value={email} type="email" className="form-control" />
 
-            <div className="form-group">
-                <label className="text-muted">Phone Number</label>
-                <input onChange={handleChange('number')} value={number} type="text" className="form-control" />
-            </div>
+            <h5>Phone Number</h5>
+            <input onChange={handleChange('number')} value={number} type="text" className="form-control" />
 
-            <div className="form-group">
-                <label className="text-muted">Password</label>
+            <h5>Password</h5>
                 <input onChange={handleChange('password')} value={password} type="password" className="form-control" />
-            </div>
 
-            <div>
-                <button className="btn btn-primary" onClick={clickSubmit}>
+                <button className="btn signup__registerButton" onClick={clickSubmit}>
                     {buttonText}
                 </button>
-            </div>
+                 <p>
+                Already have an account with us? Please Sign-in!!
+                </p>
+            <button onClick = {signIn} className="signup__signInButton">Sign In</button>
         </form>
+        </div>
+        </div>
     );
 
     return (
@@ -77,7 +81,6 @@ const Signup = () => {
             <div className="col-md-6 offset-md-3">
                 <ToastContainer />
                 {isAuth() ? <Redirect to="/" /> : null}
-                <h1 className="p-5 text-center">Signup</h1>
                 {signupForm()}
                 <br />
             </div>
